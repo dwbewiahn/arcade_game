@@ -12,7 +12,7 @@ screen = pygame.display.set_mode([WIDTH, HEIGHT])
 bgs = []
 banners = []
 guns = []
-level = 0
+level = 1
 for i in range (1,4):
     bgs.append(pygame.image.load(f'assets/bgs/{i}.png'))
     banners.append(pygame.image.load(f'assets/banners/{i}.png'))
@@ -30,8 +30,10 @@ while run:
       for event in pygame.event.get():
            if event.type == pygame.QUIT:
                 run = False
+    
 
-
+      pygame.display.flip()
+pygame.QUIT()
 
 
 
