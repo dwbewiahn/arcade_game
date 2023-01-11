@@ -12,7 +12,7 @@ screen = pygame.display.set_mode([WIDTH, HEIGHT])
 bgs = []
 banners = []
 guns = []
-target_images = [[],[],[]]
+target_images = [[], [], []]
 targets = {1: [10, 5, 3],
            2: [12, 8, 5],
            3: [15, 12, 8, 3]}
@@ -56,7 +56,17 @@ def draw_gun():
                if clicks[0]:
                     pygame.draw.circle(screen, lasers[level - 1], mouse_pos, 5)
 
-          
+def draw_level(coords):
+     if level == 1 or level == 2:
+          target_rects = [[], [], []]
+     else:
+          target_rects = [[], [], [], []]
+     for i in range(len(coords)):
+          for j in range(len(coords[i])):
+               target_rects[i].append(pygame.rect.Rect(coords[i][j][0] + 20, coords[i][j][1]), (60 - i*12, 60 - i*12))
+               screen.blit(target_images[level - 1][i], coords[i][j])
+     return target_rects
+
 
 run = True
 while run:
