@@ -12,11 +12,18 @@ screen = pygame.display.set_mode([WIDTH, HEIGHT])
 bgs = []
 banners = []
 guns = []
+target_images = [[],[],[]]
+targets = {1: [10, 5, 3],
+           2: [12, 8, 5],
+           3: [15, 12, 8, 3]}
+
 level = 2
+
 for i in range (1,4):
     bgs.append(pygame.image.load(f'assets/bgs/{i}.png'))
     banners.append(pygame.image.load(f'assets/banners/{i}.png'))
     guns.append(pygame.transform.scale(pygame.image.load(f'assets/guns/{i}.png'), (100, 100)))
+    
 
 def draw_gun():
      mouse_pos = pygame.mouse.get_pos()
