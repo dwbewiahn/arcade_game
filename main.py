@@ -67,6 +67,22 @@ def draw_level(coords):
                screen.blit(target_images[level - 1][i], coords[i][j])
      return target_rects
 
+# initialize enemy coordinates
+one_coords = [[], [], []]
+two_coords = [[], [], []]
+three_coords = [[], [], [], []]
+for i in range(3):
+     my_list = targets[1]
+     for j in range(my_list[i]):
+          one_coords[i].append((WIDTH//(my_list[i]) * j, 300 - (i - 150) + 30 * (j % 2)))
+for i in range(3):
+     my_list = targets[2]
+     for j in range(my_list[i]):
+          two_coords[i].append((WIDTH//(my_list[i]) * j, 300 - (i - 150) + 30 * (j % 2)))
+for i in range(4):
+     my_list = targets[3]
+     for j in range(my_list[i]):
+          three_coords[i].append((WIDTH//(my_list[i]) * j, 300 - (i - 100) + 30 * (j % 2)))            
 
 run = True
 while run:
