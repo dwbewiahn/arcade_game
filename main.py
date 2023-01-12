@@ -63,7 +63,7 @@ def draw_level(coords):
           target_rects = [[], [], [], []]
      for i in range(len(coords)):
           for j in range(len(coords[i])):
-               target_rects[i].append(pygame.rect.Rect(coords[i][j][0] + 20, coords[i][j][1]), (60 - i*12, 60 - i*12))
+               target_rects[i].append(pygame.rect.Rect((coords[i][j][0] + 20, coords[i][j][1]), (60 - i*12, 60 - i*12)))
                screen.blit(target_images[level - 1][i], coords[i][j])
      return target_rects
 
@@ -74,33 +74,40 @@ three_coords = [[], [], [], []]
 for i in range(3):
      my_list = targets[1]
      for j in range(my_list[i]):
-          one_coords[i].append((WIDTH//(my_list[i]) * j, 300 - (i - 150) + 30 * (j % 2)))
+          one_coords[i].append((WIDTH//(my_list[i]) * j, 300 - (i * 150) + 30 * (j % 2)))
 for i in range(3):
      my_list = targets[2]
      for j in range(my_list[i]):
-          two_coords[i].append((WIDTH//(my_list[i]) * j, 300 - (i - 150) + 30 * (j % 2)))
+          two_coords[i].append((WIDTH//(my_list[i]) * j, 300 - (i * 150) + 30 * (j % 2)))
 for i in range(4):
      my_list = targets[3]
      for j in range(my_list[i]):
-          three_coords[i].append((WIDTH//(my_list[i]) * j, 300 - (i - 100) + 30 * (j % 2)))            
+          three_coords[i].append((WIDTH//(my_list[i]) * j, 300 - (i * 100) + 30 * (j % 2)))            
 
 run = True
 while run:
-      timer.tick(fps)
+     timer.tick(fps)
 
-      screen.fill('black')
-      screen.blit(bgs[level-1],(0, 0))
-      screen.blit(banners[level-1], (0, HEIGHT-200))
+     screen.fill('black')
+     screen.blit(bgs[level-1],(0, 0))
+     screen.blit(banners[level-1], (0, HEIGHT-200))
+     if level == 1:
+          draw_level(one_coords)
+     elif level == 2:
+          draw_level(two_coords)
+     elif level == 3:
+          draw_level(three_coords)
 
-      if level > 0:
+
+     if level > 0:
            draw_gun()
 
-      for event in pygame.event.get():
-           if event.type == pygame.QUIT:
-                run = False
+     for event in pygame.event.get():
+          if event.type == pygame.QUIT:
+               run = False
     
 
-      pygame.display.flip()
+     pygame.display.flip()
 pygame.QUIT()
 
 
