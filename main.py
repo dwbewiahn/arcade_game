@@ -18,12 +18,14 @@ targets = {1: [10, 5, 3],
            3: [15, 12, 8, 3]}
 
 level = 1
-point = 0
+points = 0
 shot = False
 total_shots = 0
 # mode 0 =  freeplay, 1- accuracy, 2 - timed
 mode = 0
 ammo = 0
+time_passed = 0
+counter = 1
 
 for i in range (1,4):
     bgs.append(pygame.image.load(f'assets/bgs/{i}.png'))
@@ -38,6 +40,12 @@ for i in range (1,4):
               target_images[i - 1].append(pygame.transform.scale(
                    pygame.image.load(f'assets/targets/{i}/{j}.png'), (120 - (j*18), 80 - (j*12))))
 
+def draw_score():
+     points_text = font.render(f'Points: {points}', True, 'black')
+     screen.blit(points_text, (320, 660))
+
+
+     
 def draw_gun():
      mouse_pos = pygame.mouse.get_pos()
      gun_point = (WIDTH / 2, HEIGHT - 200)
@@ -88,13 +96,13 @@ def draw_level(coords):
      return target_rects
 
 def check_shot(targets, coords):
-     global point
+     global points
      mouse_pos = pygame.mouse.get_pos()
      for i in range(len(targets)):
           for j in range(len(targets[i])):
                if targets[i][j].collidepoint(mouse_pos):
                     coords[i].pop(j)
-                    point += 10 + 10 * (i**2)
+                    points += 10 + 10 * (i**2)
                     ##add sound  for enemy kill
      return coords
 
@@ -118,6 +126,7 @@ for i in range(4):
 run = True
 while run:
      timer.tick(fps)
+
 
      screen.fill('black')
      screen.blit(bgs[level-1],(0, 0))
@@ -144,6 +153,7 @@ while run:
 
      if level > 0:
            draw_gun()
+           draw_score()
 
      for event in pygame.event.get():
           if event.type == pygame.QUIT:
@@ -158,9 +168,7 @@ while run:
      if level > 0:
           if target_boxes == [[], [], []] and level < 3:
                level +=1
-          # elif target_boxes == [[], [], [], []] and level == 3:
-          #      level = 1
-          # ### Change to game over.
+
 
      pygame.display.flip()
 pygame.QUIT()
