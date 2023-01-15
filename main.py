@@ -155,6 +155,12 @@ while run:
                     total_shots += 1 
                     if mode == 1:
                          ammo -= 1
+     if level > 0:
+          if target_boxes == [[], [], []] and level < 3:
+               level +=1
+          elif target_boxes == [[], [], [], []] and level == 3:
+               level = 1
+          ### Change to game over.
 
      pygame.display.flip()
 pygame.QUIT()
