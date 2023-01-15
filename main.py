@@ -43,7 +43,10 @@ for i in range (1,4):
 def draw_score():
      points_text = font.render(f'Points: {points}', True, 'black')
      screen.blit(points_text, (320, 660))
-
+     shots_text = font.render(f'Shots: {total_shots}', True, 'black')
+     screen.blit(shots_text, (320, 687))
+     time_text = font.render(f'Time Elapsed: {time_passed}', True, 'black')
+     screen.blit(time_text, (320, 714))
 
      
 def draw_gun():
@@ -126,7 +129,12 @@ for i in range(4):
 run = True
 while run:
      timer.tick(fps)
-
+     if level != 0:
+          if counter < 60:
+               counter += 1
+          else:
+               counter = 1
+               time_passed += 1
 
      screen.fill('black')
      screen.blit(bgs[level-1],(0, 0))
