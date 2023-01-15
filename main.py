@@ -132,7 +132,7 @@ while run:
          target_boxes = draw_level(two_coords)
          two_coords = move_level(two_coords)
          if shot:
-              two_codords = check_shot(target_boxes, two_codords)
+              two_coords = check_shot(target_boxes, two_coords)
               shot = False
      elif level == 3:
          target_boxes = draw_level(three_coords)
@@ -158,9 +158,9 @@ while run:
      if level > 0:
           if target_boxes == [[], [], []] and level < 3:
                level +=1
-          elif target_boxes == [[], [], [], []] and level == 3:
-               level = 1
-          ### Change to game over.
+          # elif target_boxes == [[], [], [], []] and level == 3:
+          #      level = 1
+          # ### Change to game over.
 
      pygame.display.flip()
 pygame.QUIT()
