@@ -25,6 +25,7 @@ total_shots = 0
 mode = 0
 ammo = 0
 time_passed = 0
+time_remaining = 0
 counter = 1
 
 for i in range (1,4):
@@ -47,7 +48,13 @@ def draw_score():
      screen.blit(shots_text, (320, 687))
      time_text = font.render(f'Time Elapsed: {time_passed}', True, 'black')
      screen.blit(time_text, (320, 714))
-
+     if mode == 0:
+          mode_text = font.render(f'Freeplay!', True, 'black')
+     if mode == 1:
+          mode_text = font.render(f'Ammo Remaining: {ammo}', True, 'black')     
+     if mode == 2:
+          mode_text = font.render(f'Time Remaining: {time_remaining}', True, 'black')
+     screen.blit(mode_text, (320, 741))
      
 def draw_gun():
      mouse_pos = pygame.mouse.get_pos()
